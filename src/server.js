@@ -9,7 +9,9 @@ const handlebars = require("hbs");
 const mongoose=require('mongoose')
 const session =  require('express-session')
 const MongoStore = require('connect-mongo')
-
+const numCPUs=require('os').cpus().length
+const generarNumeros= require('./randoms')
+const cluster = require('cluster')
 const passport = require('passport')
 const FacebookStrategy = require('passport-facebook').Strategy
 const { fork } = require("child_process")
@@ -18,6 +20,8 @@ const argv = process.argv
 let port = 8080
 let facebook_client_id = "895703051379886"
 let facebook_client_secret = "8a5714c1dd03fa7850bfc7af42fcf75e"
+
+let modoCluster= false
 
 if(argv[2] != null) {
     const args = argv[2].split(" ")
@@ -32,7 +36,12 @@ if(argv[2] != null) {
             }
             if(split[0] == "facebook_client_secret") {
                 facebook_client_secret = split[1]
+            }if (split[0] == "CLUSTER"){
+                modoCluster=true
+            }if (split[0] == "FORK"){
+                modoCluster=false
             }
+
         }
     })
 }
@@ -41,8 +50,29 @@ process.on("exit", (code) => {
     console.log(`El código de salida es ${code}`)
 })
 
+if(modoCluster){
+    if (cluster.isMaster){
+        console.log (`Master ${process.pid} is running`)
+        for (let i =0;i<numCPUs;i++){
+            cluster.fork()
+        }
+    
+        cluster.on('exit',(worker,code,signal)=>{
+            console.log(`worker ${worker.process.pid} died`)
+        })
+    
 
-const advancedOptions = {
+    }else{
+        runServer()
+    }
+
+  
+
+}else {
+    runServer()
+}
+function runServer (){
+    const advancedOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }
@@ -97,7 +127,7 @@ app.use(session({
         maxAge: 60000 * 10
     },
     store: MongoStore.create({
-        mongoUrl: '', // la url de atlas se omite en el codigo fuente  por motivos de seguridad
+        mongoUrl: 'mongodb://localhost:27017/ecommerce', // la url de atlas se omite en el codigo fuente  por motivos de seguridad
         mongoOptions: advancedOptions
     })
 }))
@@ -133,18 +163,24 @@ app.get("/info", (req, res) => {
         memoria: process.memoryUsage,
         path_ejecucion: process.argv[1],
         id: process.pid,
-        carpeta: process.cwd()
+        carpeta: process.cwd(),
+        numCPUs:numCPUs
+
 
     })
 })
 
 app.get("/randoms", (req, res) => {
     const cant = req.query.cant || 100000000
-    const child = fork("./src/randoms.js")
+    if(modoCluster){
+        generarNumeros(cant)
+    }else{
+        const child = fork("./src/randoms.js")
     child.on("message", result => {
         res.json(result)
     });
     child.send(cant)
+    }
 })
 
 // Inicializo el web socket
@@ -153,3 +189,4 @@ ProductsWebSocket.inicializar();
 app.listen(port, () => {
     console.log("El servidor está escuchando en el puerto 8080")
 })
+}

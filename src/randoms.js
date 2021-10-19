@@ -1,4 +1,9 @@
 process.on("message", cant => {
+    const result = generarNumeros(cant)
+    process.send(result)
+})
+
+function generarNumeros (cant){
     const result = {}
     for(let i = 0; i < cant; i++) {
         const min = 1
@@ -11,5 +16,6 @@ process.on("message", cant => {
             result[random] = 1
         }
     }
-    process.send(result)
-})
+    return   result
+}
+module.exports = generarNumeros 
