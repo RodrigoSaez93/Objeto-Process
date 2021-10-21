@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d dist",
     "prod": "forever start -w src/server.js",
-    "prod-pm2": "pm2 start src/server.js --name='ServerX' --watch -- PORT=8080",
-    "prod-pm2-2": "pm2 start src/server.js --name='Server2' --watch -- PORT=8081",
+    "prod-pm2": "pm2 start src/server.js --name='ServerX' --watch -- port=8081",
+    "prod-pm2-2": "pm2 start src/server.js --name='Server2' --watch -- port=8082 CLUSTER=TRUE",
     "prod-pm2-cluster": "pm2 start src/server.js --name='ServerX' --watch -i max -- PORT=8080",
     "prod-pm2-cluster-2": "pm2 start src/server.js --name='Server2' --watch -i max -- PORT=8081"
   },
