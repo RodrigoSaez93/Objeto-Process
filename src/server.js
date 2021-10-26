@@ -15,7 +15,23 @@ const cluster = require('cluster')
 const passport = require('passport')
 const FacebookStrategy = require('passport-facebook').Strategy
 const { fork } = require("child_process")
+const compression =require('compression')
+const log4js= require('log4js')
 
+
+log4js.configure({
+    appenders:{
+        miLoggerConsole:{type:"console"},
+        miLoggerFile:{type:'file',filename:'warn.log'},
+        miLoggerFile2:{type:'file',filename:'error.log'}
+    },
+    categories: {
+        default:{appenders:["miLoggerConsole"],level:"debug"},
+        archivo:{appenders:['miLoggerFile'],level:"warn"},
+        archivo2:{appenders:['miLoggerFile2'],level:"error"}
+    }
+})
+app.use(compression())
 const argv = process.argv
 let port = 8080
 let facebook_client_id = "895703051379886"
@@ -58,7 +74,9 @@ if(modoCluster){
         }
     
         cluster.on('exit',(worker,code,signal)=>{
-            console.log(`worker ${worker.process.pid} died`)
+            const logger=log4js.getLogger()
+            logger.warn(`worker ${worker.process.pid} died`)
+            
         })
     
 
@@ -187,6 +205,9 @@ app.get("/randoms", (req, res) => {
 ProductsWebSocket.inicializar();
 
 app.listen(port, () => {
-    console.log("El servidor está escuchando en el puerto 8080")
+    const logger=log4js.getLogger()
+    logger.info('El servidor está escuchando en el puerto 8080')
+
+    
 })
 }

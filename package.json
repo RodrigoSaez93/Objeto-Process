@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "compression": "^1.7.4",
     "connect-mongo": "^4.6.0",
     "core-js": "^3.16.2",
     "express": "^4.17.1",
@@ -24,6 +25,7 @@
     "forever": "^4.0.1",
     "hbs": "^4.1.2",
     "knex": "^0.95.10",
+    "log4js": "^6.3.0",
     "mongoose": "^6.0.5",
     "mysql": "^2.18.1",
     "normalizr": "^3.6.1",
