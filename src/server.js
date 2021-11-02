@@ -33,7 +33,7 @@ log4js.configure({
 })
 app.use(compression())
 const argv = process.argv
-let port = 80
+let port = process.env.PORT || 8080
 let facebook_client_id = "895703051379886"
 let facebook_client_secret = "8a5714c1dd03fa7850bfc7af42fcf75e"
 
