@@ -105,7 +105,7 @@ const { UserModel, isValidPassword, createHash } = require('./persistencia/user'
 CRUD()
 
 async function CRUD(){
-  const URL='mongodb://localhost:27017/ecommerce'
+  const URL= process.env.DB_MONGO
    
     let rta =await mongoose.connect(URL,{
         useNewUrlParser:true,
@@ -145,7 +145,7 @@ app.use(session({
         maxAge: 60000 * 10
     },
     store: MongoStore.create({
-        mongoUrl: 'mongodb://localhost:27017/ecommerce', // la url de atlas se omite en el codigo fuente  por motivos de seguridad
+        mongoUrl: process.env.DB_MONGO , // la url de atlas se omite en el codigo fuente  por motivos de seguridad
         mongoOptions: advancedOptions
     })
 }))
