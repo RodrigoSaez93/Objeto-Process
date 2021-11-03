@@ -1,7 +1,97 @@
-Error: command quick not found
-    at Config.runCommand (/home/rodrigodev/.nvm/versions/node/v14.17.3/lib/node_modules/artillery/node_modules/@oclif/config/lib/config.js:169:19)
-    at async Main.run (/home/rodrigodev/.nvm/versions/node/v14.17.3/lib/node_modules/artillery/node_modules/@oclif/command/lib/main.js:27:9)
-    at async Main._run (/home/rodrigodev/.nvm/versions/node/v14.17.3/lib/node_modules/artillery/node_modules/@oclif/command/lib/command.js:43:20)
-    at async main (/home/rodrigodev/.nvm/versions/node/v14.17.3/lib/node_modules/artillery/bin/artillery:42:15)
-undefined
-command quick not found
+Started phase 0, duration: 1s @ 17:01:24(-0300) 2021-11-03
+Report @ 17:01:34(-0300) 2021-11-03
+Elapsed time: 10 seconds
+  Scenarios launched:  50
+  Scenarios completed: 0
+  Requests completed:  65
+  Mean response/sec: 10.13
+  Response time (msec):
+    min: 0
+    max: 7152
+    median: 1
+    p95: 6514
+    p99: 7151.3
+  Codes:
+    200: 65
+
+Report @ 17:01:44(-0300) 2021-11-03
+Elapsed time: 20 seconds
+  Scenarios launched:  0
+  Scenarios completed: 0
+  Requests completed:  93
+  Mean response/sec: 11.33
+  Response time (msec):
+    min: 1726
+    max: 5438
+    median: 2807
+    p95: 5301.6
+    p99: 5436.7
+  Codes:
+    200: 93
+  Errors:
+    ETIMEDOUT: 3
+
+Report @ 17:01:54(-0300) 2021-11-03
+Elapsed time: 30 seconds
+  Scenarios launched:  0
+  Scenarios completed: 0
+  Requests completed:  175
+  Mean response/sec: 16.85
+  Response time (msec):
+    min: 776
+    max: 2643
+    median: 1731
+    p95: 1858.8
+    p99: 2609.5
+  Codes:
+    200: 175
+
+Report @ 17:02:04(-0300) 2021-11-03
+Elapsed time: 40 seconds
+  Scenarios launched:  0
+  Scenarios completed: 0
+  Requests completed:  197
+  Mean response/sec: 21.71
+  Response time (msec):
+    min: 814
+    max: 1947
+    median: 943
+    p95: 1921.7
+    p99: 1932.6
+  Codes:
+    200: 197
+
+Report @ 17:02:14(-0300) 2021-11-03
+Elapsed time: 49 seconds
+  Scenarios launched:  0
+  Scenarios completed: 47
+  Requests completed:  416
+  Mean response/sec: 41.47
+  Response time (msec):
+    min: 161
+    max: 1929
+    median: 417.5
+    p95: 954.7
+    p99: 1850
+  Codes:
+    200: 416
+
+All virtual users finished
+Summary report @ 17:02:14(-0300) 2021-11-03
+  Scenarios launched:  50
+  Scenarios completed: 47
+  Requests completed:  946
+  Mean response/sec: 19.1
+  Response time (msec):
+    min: 0
+    max: 7152
+    median: 863.5
+    p95: 3647.2
+    p99: 5468.5
+  Scenario counts:
+    0: 50 (100%)
+  Codes:
+    200: 946
+  Errors:
+    ETIMEDOUT: 3
+
