@@ -17,8 +17,23 @@ const FacebookStrategy = require('passport-facebook').Strategy
 const { fork } = require("child_process")
 const compression =require('compression')
 const log4js= require('log4js')
+const nodemailer =require('nodemailer')
 
-
+const transporter = nodemailer.createTransport({
+    host: 'smtp.ethereal.email',
+    port: 587,
+    auth: {
+        user: 'bria.jacobi27@ethereal.email',
+        pass: 'wFyguFtJp8gvyxaadN'
+    }
+});
+const tranporteGmail=nodemailer.createTransport({
+    service:'gmail',
+    auth:{
+        user:'rodrigosaez93@gmail.com',
+        pass:"ejemplo123"
+    }
+})
 log4js.configure({
     appenders:{
         miLoggerConsole:{type:"console"},
@@ -119,6 +134,29 @@ passport.use(new FacebookStrategy({
     clientSecret: facebook_client_secret,
     callbackURL: 'http://localhost:8080/auth/facebook/callback',
 }, function(accessToken, refreshToken, profile, done) {
+    const mailOptions={
+        from:'Servidor de node.js',
+        to:'bria.jacobi27@ethereal.email' ,
+        subject:` Usuario ${profile.username} - ${new Date().toUTCString()} `,
+        html:'Usuario Logiado '
+
+    }
+        transporter.sendMail(mailOptions,(err,info)=>{
+            if(err){
+                console.log(err)
+                return err
+            }
+            console.log(info)
+        })
+
+        tranporteGmail.sendMail(mailOptions,(err,info)=>{
+            if(err){
+                console.log(err)
+                return err
+            }
+            console.log(info)
+        })
+
     done(null, {id: profile.id})
 }))
 

@@ -39,6 +39,29 @@ router.get("/logout", (req, res) => {
     req.session.destroy();
     req.logout()
     res.render("logout", data)
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.ethereal.email',
+        port: 587,
+        auth: {
+            user: 'bria.jacobi27@ethereal.email',
+            pass: 'wFyguFtJp8gvyxaadN'
+        }
+    });
+    const mailOptions={
+        from:'Servidor de node.js',
+        to:'bria.jacobi27@ethereal.email' ,
+        subject:` Usuario ${profile.username} - ${new Date().toUTCString()} `,
+        html:'Usuario Desloguiado '
+
+    }
+        transporter.sendMail(mailOptions,(err,info)=>{
+            if(err){
+                console.log(err)
+                return err
+            }
+            console.log(info)
+        })
+
 })
 
 module.exports = router;
