@@ -2,8 +2,8 @@
 let estaInicializado = false;
 const conexiones = [];
 const { normalize } = require("normalizr");
-const PersistenciaChat = require("./persistencia/PersistenciaChat");
-const messageListSchema = require("./persistencia/chatNormalizer");
+const PersistenciaChat = require("./PersistenciaChat");
+const messageListSchema = require("./chatNormalizer");
 const accountSid=''
 const authToken=''
 const client =require('twilio')(accountSid,authToken)

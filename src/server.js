@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
-const routes = require("./routes");
-const webRoutes = require("./webRoutes");
-const ProductsWebSocket = require("./ProductsWebSocket");
-const PersistenciaChat = require('./persistencia/PersistenciaChat')
-const PersistenciaProducto = require('./persistencia/PersistenciaProducto')
+const routes = require("./modulos/productos/productRoutes");
+const webRoutes = require("./modulos/user/routesUser");
+const ProductsWebSocket = require("./modulos/chats/ChatsWebSocket");
+const PersistenciaChat = require('./modulos/chats/PersistenciaChat')
+const PersistenciaProducto = require('./modulos/productos/serviProducto')
 const handlebars = require("hbs");
 const mongoose=require('mongoose')
 const session =  require('express-session')

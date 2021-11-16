@@ -1,4 +1,4 @@
-const ProductsWebSocket = require("../ProductsWebSocket");
+const ProductsWebSocket = require("../chats/ChatsWebSocket");
 const PersistenciaProducto = require("../persistencia/PersistenciaProducto");
 
 class ProductosCtrl {

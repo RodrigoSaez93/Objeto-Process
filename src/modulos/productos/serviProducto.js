@@ -1,4 +1,4 @@
-const productoModel =require('./producto')
+const productoModel =require('./valProducto')
 
 
 class PersistenciaProducto {
