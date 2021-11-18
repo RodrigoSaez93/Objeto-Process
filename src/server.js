@@ -18,7 +18,7 @@ const { fork } = require("child_process")
 const compression =require('compression')
 const log4js= require('log4js')
 const nodemailer =require('nodemailer')
-
+const productGraphql=require('./modulos/productos/productosGraphql')
 const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
@@ -202,6 +202,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 app.use("/api", routes);
+app.use("/",productGraphql)
 app.use("/", webRoutes)
 
 app.get("/", (req, res) => {
