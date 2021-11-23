@@ -4,9 +4,9 @@ const conexiones = [];
 const { normalize } = require("normalizr");
 const PersistenciaChat = require("./PersistenciaChat");
 const messageListSchema = require("./chatNormalizer");
-const accountSid=''
-const authToken=''
-const client =require('twilio')(accountSid,authToken)
+const accountSid='abc'
+const authToken='abc'
+//const client =require('twilio')(accountSid,authToken)
 
 
 class ProductsWebSocket {
@@ -69,11 +69,11 @@ class ProductsWebSocket {
                 this.enviarDatos(objetoMensaje);
 
                 if(objetoMensaje.text.indexOf('administrador') !=-1){
-                    client.messages.create({
+                  /*  client.messages.create({
                         body:`Mensaje enviado por ${objetoMensaje.author} texto ${objetoMensaje.text}`,
                         from:'+19714061392',
                         to: '+549115612344'
-                    })
+                    })*/
                 }
 
                 // Guardo los mensajes en un archivo

@@ -1,0 +1,60 @@
+
+> node-express-productos@1.0.0 test /home/rodrigodev/personalProjects/cursoCodeHouse/node-express-productos-13
+> mocha test/index.test.js
+
+
+
+  test de integración de productos
+    ✔ debería insertar un producto (575ms)
+    ✔ deberia listar los productos (379ms)
+    1) deberia cargar un producto
+    2) deberia actualizar un producto
+    3) deberia eliminar un producto
+
+
+  2 passing (2s)
+  3 failing
+
+  1) test de integración de productos
+       deberia cargar un producto:
+
+      AssertionError: expected { Object (_id, title, ...) } to contain keys '_id', 'title', 'price', and 'thumbnail'
+      + expected - actual
+
+       [
+      -  "__v"
+         "_id"
+         "price"
+      +  "thumbnail"
+         "title"
+       ]
+      
+      at Context.<anonymous> (test/index.test.js:33:41)
+      at processTicksAndRejections (internal/process/task_queues.js:95:5)
+
+  2) test de integración de productos
+       deberia actualizar un producto:
+
+      AssertionError: expected 404 to deeply equal 200
+      + expected - actual
+
+      -404
+      +200
+      
+      at Context.<anonymous> (test/index.test.js:44:36)
+      at processTicksAndRejections (internal/process/task_queues.js:95:5)
+
+  3) test de integración de productos
+       deberia eliminar un producto:
+
+      AssertionError: expected 404 to deeply equal 200
+      + expected - actual
+
+      -404
+      +200
+      
+      at Context.<anonymous> (test/index.test.js:54:36)
+      at processTicksAndRejections (internal/process/task_queues.js:95:5)
+
+
+

@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const app = express();
 const routes = require("./modulos/productos/productRoutes");
@@ -10,7 +11,7 @@ const mongoose=require('mongoose')
 const session =  require('express-session')
 const MongoStore = require('connect-mongo')
 const numCPUs=require('os').cpus().length
-const generarNumeros= require('./randoms')
+const generarNumeros= require('./utils/randoms')
 const cluster = require('cluster')
 const passport = require('passport')
 const FacebookStrategy = require('passport-facebook').Strategy
@@ -113,7 +114,7 @@ handlebars.registerHelper("raw-helper", function(options) {
     return options.fn(this);
 })
 
-const { UserModel, isValidPassword, createHash } = require('./persistencia/user')
+const { UserModel, isValidPassword, createHash } = require('./modulos/user/dalUser')
 
 
 //conecto la base de datos
@@ -174,7 +175,7 @@ app.use(passport.initialize())
 
 
 // importo las rutas de vistas
-const productRoutes = require("./productRoutes");
+const productRoutes = require("./modulos/productos/productRoutes");
 
 app.use(session({
     secret: "secreto",
@@ -232,7 +233,7 @@ app.get("/randoms", (req, res) => {
     if(modoCluster){
         generarNumeros(cant)
     }else{
-        const child = fork("./src/randoms.js")
+        const child = fork("./src/utils/randoms.js")
     child.on("message", result => {
         res.json(result)
     });

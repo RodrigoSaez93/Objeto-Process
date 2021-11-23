@@ -1,5 +1,5 @@
 const ProductsWebSocket = require("../chats/ChatsWebSocket");
-const PersistenciaProducto = require("../persistencia/PersistenciaProducto");
+const PersistenciaProducto = require("./serviProducto");
 
 class ProductosCtrl {
     static async getProductos() {
