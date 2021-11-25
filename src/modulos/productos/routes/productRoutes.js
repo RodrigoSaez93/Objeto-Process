@@ -1,5 +1,5 @@
 const express = require("express");
-const ProductosCtrl = require("./ProductosCtrl");
+const ProductosCtrl = require("../controlador/ProductosCtrl");
 
 const productosCtrl = new ProductosCtrl();
 

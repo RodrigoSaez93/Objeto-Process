@@ -1,11 +1,11 @@
 require('dotenv').config()
 const express = require("express");
 const app = express();
-const routes = require("./modulos/productos/productRoutes");
+const routes = require("./modulos/productos/routes/productRoutes");
 const webRoutes = require("./modulos/user/routesUser");
-const ProductsWebSocket = require("./modulos/chats/ChatsWebSocket");
+const ProductsWebSocket = require("./modulos/chats/negocio/ChatsWebSocket");
 const PersistenciaChat = require('./modulos/chats/PersistenciaChat')
-const PersistenciaProducto = require('./modulos/productos/serviProducto')
+const PersistenciaProducto = require('./modulos/productos/persistencia/persistenciaProductoMongo')
 const handlebars = require("hbs");
 const mongoose=require('mongoose')
 const session =  require('express-session')
@@ -19,7 +19,7 @@ const { fork } = require("child_process")
 const compression =require('compression')
 const log4js= require('log4js')
 const nodemailer =require('nodemailer')
-const productGraphql=require('./modulos/productos/productosGraphql')
+const productGraphql=require('./modulos/productos/controlador/productosGraphql')
 const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
@@ -175,7 +175,7 @@ app.use(passport.initialize())
 
 
 // importo las rutas de vistas
-const productRoutes = require("./modulos/productos/productRoutes");
+const productRoutes = require("./modulos/productos/routes/productRoutes");
 
 app.use(session({
     secret: "secreto",

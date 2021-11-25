@@ -3,7 +3,7 @@ const router=express.Router()
 const {buildSchema}=require('graphql')
 const {graphqlHTTP}=require('express-graphql')
 
-const productoModel =require('./valProducto')
+const productoModel =require('../persistencia/productoModel')
 
 const schema=buildSchema( `
 
