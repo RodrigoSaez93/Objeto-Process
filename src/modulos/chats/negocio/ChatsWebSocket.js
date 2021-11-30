@@ -2,7 +2,7 @@
 let estaInicializado = false;
 const conexiones = [];
 const { normalize } = require("normalizr");
-const PersistenciaChat = require("./PersistenciaChat");
+const PersistenciaChat = require("../persistencia/persistenciaChat");
 const messageListSchema = require("./chatNormalizer");
 const accountSid='abc'
 const authToken='abc'

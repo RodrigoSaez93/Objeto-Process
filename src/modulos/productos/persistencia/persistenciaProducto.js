@@ -1,6 +1,3 @@
-
-
-
 class PersistenciaProducto {
 
      insertar(producto) {
@@ -25,3 +22,4 @@ class PersistenciaProducto {
         return   null
     }
 }
+module.exports=PersistenciaProducto
