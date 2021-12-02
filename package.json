@@ -42,7 +42,8 @@
     "regenerator-runtime": "^0.13.9",
     "sqlite3": "^5.0.2",
     "twilio": "^3.71.1",
-    "websocket": "^1.0.34"
+    "websocket": "^1.0.34",
+    "yargs": "^17.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",

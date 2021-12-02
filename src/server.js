@@ -1,4 +1,7 @@
-require('dotenv').config()
+const path=require('path')
+require('dotenv').config({
+    path: path.resolve(__dirname,process.env.NODE_ENV + '.env')
+})
 const express = require("express");
 const app = express();
 const routes = require("./modulos/productos/routes/productRoutes");
@@ -49,7 +52,8 @@ log4js.configure({
 })
 app.use(compression())
 const argv = process.argv
-let port = process.env.PORT || 8080
+const args = require('yargs').argv
+let port = args.port || 8080
 let facebook_client_id = "895703051379886"
 let facebook_client_secret = "8a5714c1dd03fa7850bfc7af42fcf75e"
 
