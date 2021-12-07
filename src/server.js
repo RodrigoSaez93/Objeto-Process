@@ -1,7 +1,6 @@
 const path=require('path')
-require('dotenv').config({
-    path: path.resolve(__dirname,process.env.NODE_ENV + '.env')
-})
+
+const config =require('..config/')
 const express = require("express");
 const app = express();
 const routes = require("./modulos/productos/routes/productRoutes");
@@ -248,7 +247,7 @@ app.get("/randoms", (req, res) => {
 // Inicializo el web socket
 ProductsWebSocket.inicializar();
 
-app.listen(port, () => {
+app.listen(config.port, () => {
     const logger=log4js.getLogger()
     logger.info('El servidor está escuchando en el puerto 8080')
 
