@@ -21,7 +21,7 @@ const { fork } = require("child_process")
 const compression =require('compression')
 const log4js= require('log4js')
 const nodemailer =require('nodemailer')
-const productGraphql=require('./modulos/productos/controlador/productosGraphql')
+const productGraphql=require('./modulos/productos/routes/productRoutesGraphql')
 const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,

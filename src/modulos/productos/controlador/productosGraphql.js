@@ -1,7 +1,6 @@
-const express=require("express")
-const router=express.Router()
+
 const {buildSchema}=require('graphql')
-const {graphqlHTTP}=require('express-graphql')
+
 
 const productoModel =require('../persistencia/productoModel')
 
@@ -46,11 +45,6 @@ const root = {
     insertarProducto:crearProducto
 }
 
-router.use('/graphql',graphqlHTTP({
-    schema:schema,
-    rootValue:root,
-    graphiql:true
 
-}))
 
-module.exports=router
+module.exports={schema,root}
